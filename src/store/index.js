@@ -12,6 +12,7 @@ export default new Vuex.Store({
         currency: 'EUR',
         exchangeRate: 1,
         currencySymbol: '€',
+        realAmount: 0,
     },
     mutations: {
         setBillAmount(state, amount) {
@@ -30,9 +31,12 @@ export default new Vuex.Store({
         setExchangeRate(state, rate) {
             state.exchangeRate = rate;
         },
+        setRealAmount(state, amount) {
+            state.realAmount = amount;
+        },
     },
     actions: {
-        async fetchExchangeRate({ commit, state }) {
+        async exchangeRateStore({ commit, state }) {
             try {
                 const rate = await fetchExchangeRate(state.currency, 'BRL');
                 commit('setExchangeRate', rate);
@@ -55,6 +59,9 @@ export default new Vuex.Store({
         amountPerPerson(state, getters) {
             const totalAmount = parseFloat(getters.totalAmount) || 0;
             return (totalAmount / state.numberOfPeople).toFixed(2);
+        },
+        convertedRealAmount(state) {
+            return (state.realAmount / state.exchangeRate).toFixed(2);
         },
     },
 });

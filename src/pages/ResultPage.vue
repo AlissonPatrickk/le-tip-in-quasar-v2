@@ -24,9 +24,15 @@
               <strong>Por Pessoa:</strong> {{ amountPerPerson }} {{ currencySymbol }}
             </div>
           </div>
+          <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 q-mt-md">
+            <div class="text-custom">
+              <strong>R$:</strong> {{ convertedRealAmount }}
+            </div>
+          </div>
         </div>
         <div class="text-left">
-          <q-btn @click="goBack" icon="chevron_left" color="primary" class="q-mt-md" size="lg" />
+          <q-btn @click="goBack" icon="chevron_left" style="border-radius: 50px; width: 50px; height: 50px;"
+            color="primary" class="q-mt-md" size="lg" />
         </div>
       </q-card-section>
     </q-card>
@@ -39,8 +45,12 @@ import { mapGetters, mapState } from 'vuex';
 export default {
   name: 'ResultPage',
   computed: {
-    ...mapState(['currencySymbol', 'billAmount']),
+    ...mapState(['currencySymbol', 'billAmount', 'exchangeRate']),
     ...mapGetters(['tipAmount', 'totalAmount', 'amountPerPerson']),
+    convertedRealAmount() {
+      const totalAmountInCurrency = parseFloat(this.totalAmount) || 0; // Pega o total em outra moeda
+      return (totalAmountInCurrency * this.exchangeRate).toFixed(2); // Converte para R$
+    },
   },
   methods: {
     goBack() {
@@ -55,8 +65,9 @@ export default {
   background-color: #f7f7f7;
   height: 100vh;
 }
-.text-custom{
+
+.text-custom {
   font-size: 30px;
-  padding: 30px;
+  padding: 30px 0;
 }
 </style>

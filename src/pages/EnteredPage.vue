@@ -10,8 +10,8 @@
                             { label: 'USD', value: 'USD' }
                         ]" />
                     </div>
-                    <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 q-mb-xl ">
-                        <div class="text-custom">Valor da Conta: {{ tipPercentage }}%</div>
+                    <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 q-mb-xl flex justify-center">
+                        <div class="text-custom">Valor da Conta:</div>
                         <q-input v-model="billAmount" type="number" :min="0" outlined dense />
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 q-mb-xl ">
@@ -26,7 +26,9 @@
                     </div>
                 </div>
                 <div class="text-right q-mt-lg">
-                    <q-btn @click="goToResultPage" icon="chevron_right" color="primary" class="q-mt-md" size="lg" />
+                    <q-btn @click="goToResultPage" icon="chevron_right"
+                        style="border-radius: 50px; width: 50px; height: 50px;" color="primary" class="q-mt-md"
+                        size="lg" />
                 </div>
             </q-card-section>
         </q-card>
