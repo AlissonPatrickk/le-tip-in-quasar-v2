@@ -50,7 +50,7 @@ export default {
         };
     },
     async created() {
-        await this.$store.dispatch('fetchExchangeRate');
+        await this.$store.dispatch('exchangeRateStore');
     },
     methods: {
         ...mapMutations(['setBillAmount', 'setTipPercentage', 'setNumberOfPeople', 'setCurrency']),
