@@ -4,7 +4,7 @@
       <div class="col-10">
         <h5 class="text-center">Le / Tip</h5>
       </div>
-      <div class="col-xs-10 col-sm-8 col-md-6 col-lg-5 q-py-lg border-custom">
+      <div class="col-xs-10 col-sm-10 col-md-6 col-lg-5 q-py-lg ">
         <div class="row text-center">
           <div class="col-12 q-mb-md">
             <div class="text-custom">
@@ -40,7 +40,7 @@
       </div>
     </div>
     <div class="potion-btn">
-      <q-btn class="button-around{" @click="goBack" icon="chevron_left" color="primary" size="lg" />
+      <q-btn round @click="goBack" icon="chevron_left" color="primary" size="lg" />
     </div>
   </q-page>
 </template>

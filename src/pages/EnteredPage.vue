@@ -4,7 +4,7 @@
       <div class="col-12">
         <h5 class="text-center">Le / Tip</h5>
       </div>
-      <div class="row col-xs-10 col-sm-8 col-md-6 col-lg-5 q-py-lg justify-center border-custom">
+      <div class="row col-xs-10 col-sm-10 col-md-6 col-lg-5 q-py-lg justify-center">
         <div class="col-10 flex justify-center">
           <q-btn-toggle v-model="currency" toggle-color="primary" :options="[
             { label: 'EUR', value: 'EUR' },
@@ -29,8 +29,7 @@
 
     </div>
     <div class="potion-btn">
-      <q-btn @click="goToResultPage" :disable="billAmount <= 0" icon="chevron_right" class="button-around"
-        color="primary" size="lg" />
+      <q-btn @click="goToResultPage" :disable="billAmount <= 0" icon="chevron_right" round color="primary" size="lg" />
     </div>
 
   </q-page>
