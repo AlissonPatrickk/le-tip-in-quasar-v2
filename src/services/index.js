@@ -16,7 +16,7 @@ export const convertCurrency = async (baseCurrency, quoteCurrency = 'BRL') => {
         const exchangeRate = response.data.quotes[quoteKey]
         return exchangeRate;
     } catch (error) {
-        console.error('Erro ao converter moeda:', error);
+        console.error('Erro in conversion:', error);
         throw error;
     }
 };

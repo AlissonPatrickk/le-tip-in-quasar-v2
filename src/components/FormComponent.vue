@@ -1,24 +1,24 @@
 <template>
   <div class="q-pa-md">
     <div class="row col-xs-10 col-sm-10 col-md-6 col-lg-5 q-py-lg justify-center">
-      <div class="col-10 flex justify-center">
+      <div class="col-10 flex justify-center q-py-md">
         <q-btn-toggle v-model="localCurrency" toggle-color="primary" :options="[
           { label: 'EUR', value: 'EUR' },
           { label: 'USD', value: 'USD' }
         ]" @input="updateValues" />
       </div>
       <div class="col-8">
-        <div class="text-custom">Valor:</div>
+        <div class="text-custom">Valor</div>
         <q-input v-model="localBillAmount" type="number" inputmode="numeric" :min="0" outlined dense
           @input="updateValues" />
       </div>
       <div class="col-8 q-mt-lg">
-        <div class="text-custom">Gorjeta: {{ localTipPercentage }}%</div>
+        <div class="text-custom">Gorjeta {{ localTipPercentage }}%</div>
         <q-slider class="q-pa-sm" v-model="localTipPercentage" :min="10" :max="20" :value="1" @input="updateValues"
           caption="Percentual de Gorjeta" color="primary" track-color="grey-3" />
       </div>
       <div class="col-8 q-mt-lg">
-        <div class="text-custom">Pessoas: {{ localNumberOfPeople }}</div>
+        <div class="text-custom">Pessoas {{ localNumberOfPeople }}</div>
         <q-slider class="q-pa-sm" v-model="localNumberOfPeople" :min="2" :max="16" value="1" @input="updateValues"
           caption="Número de Pessoas" color="primary" track-color="grey-3" />
       </div>

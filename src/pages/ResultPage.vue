@@ -2,7 +2,7 @@
   <q-page class="q-pa-md">
     <div class="row justify-center">
       <div class="col-10">
-        <h5 class="text-center">Resultado</h5>
+        <h5 class="text-center">Le / Tip</h5>
       </div>
       <ResultComponent />
     </div>

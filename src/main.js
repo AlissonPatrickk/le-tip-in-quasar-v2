@@ -4,7 +4,7 @@ import Quasar from 'quasar'
 import store from './store/index'
 import router from './router/routes';
 import 'quasar/dist/quasar.min.css'
-import '../src/style/index.css'; 
+import '../src/style/index.css';
 
 Vue.config.productionTip = false
 Vue.use(Quasar)

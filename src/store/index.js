@@ -11,7 +11,6 @@ export default new Vuex.Store({
         numberOfPeople: 2,
         currency: 'EUR',
         currencySymbol: '€',
-        exchangeRate: 1,
         realAmount: 0,
     },
     mutations: {
@@ -38,7 +37,7 @@ export default new Vuex.Store({
                 const result = await convertCurrency(state.currency, 'BRL', state.billAmount);
                 commit('setRealAmount', result);
             } catch (error) {
-                console.error('Erro ao converter moeda:', error);
+                console.error('Erro in conversion:', error);
             }
         },
     },

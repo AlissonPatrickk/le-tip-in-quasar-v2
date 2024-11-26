@@ -1,5 +1,10 @@
 <template>
   <q-page class="q-pa-md">
+    <div class="text-center">
+      <h5>
+        Le / Tip
+      </h5>
+    </div>
     <div v-if="isMobile">
       <FormComponent :billAmount="billAmount" :tipPercentage="tipPercentage" :numberOfPeople="numberOfPeople"
         :currency="currency" @update:billAmount="billAmount = $event" @update:tipPercentage="tipPercentage = $event"
@@ -9,18 +14,18 @@
           size="lg" />
       </div>
     </div>
-    <div v-else class="row">
-      <div class="col-6">
+    <div v-else class="row items-center">
+      <div class="col-5">
         <FormComponent :billAmount="billAmount" :tipPercentage="tipPercentage" :numberOfPeople="numberOfPeople"
           :currency="currency" @update:billAmount="billAmount = $event" @update:tipPercentage="tipPercentage = $event"
           @update:numberOfPeople="numberOfPeople = $event" @update:currency="currency = $event" />
       </div>
-      <div class="col-6">
+      <div class="col text-center">
+        <q-btn @click="calculate" :disable="billAmount <= 0" icon="sync" color="primary" size="lg" />
+      </div>
+      <div class="col-5">
         <ResultComponent :billAmount="billAmount" :tipPercentage="tipPercentage" :numberOfPeople="numberOfPeople"
           :currency="currency" />
-      </div>
-      <div class="col-12 q-mt-md text-center">
-        <q-btn @click="calculate" :disable="billAmount <= 0" label="Calcular" color="primary" size="lg" />
       </div>
     </div>
   </q-page>

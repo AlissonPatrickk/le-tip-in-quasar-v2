@@ -27,7 +27,7 @@
       </div>
       <div class="col-12 q-mt-md">
         <div class="text-custom">
-          <div><strong>Em Reais (R$):</strong></div>
+          <div><strong>em Reais (R$):</strong></div>
           <div>{{ convertedRealAmount }}</div>
         </div>
       </div>
@@ -41,10 +41,9 @@ import { mapState, mapGetters } from 'vuex';
 export default {
   name: 'ResultComponent',
   computed: {
-    ...mapState(['currencySymbol', 'billAmount', 'exchangeRate', 'realAmount']),
+    ...mapState(['currencySymbol', 'billAmount', 'realAmount']),
     ...mapGetters(['tipAmount', 'totalAmount', 'amountPerPerson']),
     convertedRealAmount() {
-      console.log("realAmount", this.realAmount)
       const totalAmountInCurrency = parseFloat(this.totalAmount) || 0;
       return (totalAmountInCurrency * this.realAmount).toFixed(2);
     }
