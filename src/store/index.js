@@ -37,7 +37,6 @@ export default new Vuex.Store({
             try {
                 const result = await convertCurrency(state.currency, 'BRL', state.billAmount);
                 commit('setRealAmount', result);
-                commit('setExchangeRate', result.exchangeRate); 
             } catch (error) {
                 console.error('Erro ao converter moeda:', error);
             }

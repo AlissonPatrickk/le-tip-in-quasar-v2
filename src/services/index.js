@@ -12,10 +12,9 @@ export const convertCurrency = async (baseCurrency, quoteCurrency = 'BRL') => {
                 currencies: quoteCurrency,
             }
         });
-        
-        const exchangeRate = response.data.quotes[`${baseCurrency}${quoteCurrency}`];
-
-        return exchangeRate; 
+        const quoteKey = Object.keys(response.data.quotes)[0];
+        const exchangeRate = response.data.quotes[quoteKey]
+        return exchangeRate;
     } catch (error) {
         console.error('Erro ao converter moeda:', error);
         throw error;

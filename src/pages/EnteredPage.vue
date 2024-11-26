@@ -1,36 +1,38 @@
 <template>
-  <q-page>
-    <q-card class="container">
-      <q-card-section>
-        <h3 class="text-center">Le / Tip</h3>
-        <div class="row justify-center align-center">
-          <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 q-mb-xl flex justify-center">
-            <q-btn-toggle v-model="currency" toggle-color="primary" :options="[
-              { label: 'EUR', value: 'EUR' },
-              { label: 'USD', value: 'USD' }
-            ]"/>
-          </div>
-          <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 q-mb-xl flex justify-center">
-            <div class="text-custom">Valor:</div>
-            <q-input v-model="billAmount" type="number" :min="0" outlined dense />
-          </div>
-          <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 q-mb-xl">
-            <div class="q-mb-xl text-custom">Gorjeta: {{ tipPercentage }}%</div>
-            <q-slider class="q-pa-sm" v-model="tipPercentage" :min="10" :max="20" :value="1"
-              caption="Percentual de Gorjeta" color="primary" track-color="grey-3" />
-          </div>
-          <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
-            <div class="q-mb-xl text-custom">Pessoas: {{ numberOfPeople }}</div>
-            <q-slider class="q-pa-sm" v-model="numberOfPeople" :min="2" :max="16" value="1" caption="Número de Pessoas"
-              color="primary" track-color="grey-3" />
-          </div>
+  <q-page class="q-pa-md">
+    <div class="row justify-center align-center">
+      <div class="col-12">
+        <h5 class="text-center">Le / Tip</h5>
+      </div>
+      <div class="row col-xs-10 col-sm-8 col-md-6 col-lg-5 q-py-lg justify-center border-custom">
+        <div class="col-10 flex justify-center">
+          <q-btn-toggle v-model="currency" toggle-color="primary" :options="[
+            { label: 'EUR', value: 'EUR' },
+            { label: 'USD', value: 'USD' }
+          ]" />
         </div>
-        <div class="text-right q-mt-lg">
-          <q-btn @click="goToResultPage" icon="chevron_right" style="border-radius: 50px; width: 50px; height: 50px;"
-            color="primary" class="q-mt-md" size="lg" />
+        <div class="col-8 ">
+          <div class="text-custom">Valor:</div>
+          <q-input v-model="billAmount" type="number" inputmode="numeric" :min="0" outlined dense />
         </div>
-      </q-card-section>
-    </q-card>
+        <div class="col-8  q-mt-lg">
+          <div class=" text-custom">Gorjeta: {{ tipPercentage }}%</div>
+          <q-slider class="q-pa-sm" v-model="tipPercentage" :min="10" :max="20" :value="1"
+            caption="Percentual de Gorjeta" color="primary" track-color="grey-3" />
+        </div>
+        <div class="col-8 q-mt-lg">
+          <div class=" text-custom">Pessoas: {{ numberOfPeople }}</div>
+          <q-slider class="q-pa-sm" v-model="numberOfPeople" :min="2" :max="16" value="1" caption="Número de Pessoas"
+            color="primary" track-color="grey-3" />
+        </div>
+      </div>
+
+    </div>
+    <div class="potion-btn">
+      <q-btn @click="goToResultPage" :disable="billAmount <= 0" icon="chevron_right" class="button-around"
+        color="primary" size="lg" />
+    </div>
+
   </q-page>
 </template>
 
@@ -63,13 +65,9 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  background-color: #f7f7f7;
-  height: 100vh;
-}
-
-.text-custom {
-  font-size: 20px;
-  font-weight: bold;
+.potion-btn {
+  position: absolute;
+  right: 15px;
+  bottom: 15px;
 }
 </style>

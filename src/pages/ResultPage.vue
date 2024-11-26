@@ -1,41 +1,47 @@
 <template>
-  <q-page>
-    <q-card class="container">
-      <q-card-section>
-        <h3 class="text-center">Le / Tip</h3>
-        <div class="row justify-center align-center">
-          <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
+  <q-page class="q-pa-md">
+    <div class="row justify-center">
+      <div class="col-10">
+        <h5 class="text-center">Le / Tip</h5>
+      </div>
+      <div class="col-xs-10 col-sm-8 col-md-6 col-lg-5 q-py-lg border-custom">
+        <div class="row text-center">
+          <div class="col-12 q-mb-md">
             <div class="text-custom">
-              <strong>Conta:</strong> {{ billAmount }} {{ currencySymbol }}
+              <div><strong>Conta:</strong></div>
+              <div>{{ billAmount }} {{ currencySymbol }}</div>
             </div>
           </div>
-          <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
+          <div class="col-12 q-mb-md">
             <div class="text-custom">
-              <strong>Gorjeta:</strong> {{ tipAmount }} {{ currencySymbol }}
+              <div><strong>Gorjeta:</strong></div>
+              <div>{{ tipAmount }} {{ currencySymbol }}</div>
             </div>
           </div>
-          <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
+          <div class="col-12 q-mb-md">
             <div class="text-custom">
-              <strong>Total:</strong> {{ totalAmount }} {{ currencySymbol }}
+              <div><strong>Total:</strong></div>
+              <div>{{ totalAmount }} {{ currencySymbol }}</div>
             </div>
           </div>
-          <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
+          <div class="col-12 q-mb-md">
             <div class="text-custom">
-              <strong>Por Pessoa:</strong> {{ amountPerPerson }} {{ currencySymbol }}
+              <div><strong>Por Pessoa:</strong></div>
+              <div>{{ amountPerPerson }} {{ currencySymbol }}</div>
             </div>
           </div>
-          <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 q-mt-md">
+          <div class="col-12 q-mt-md">
             <div class="text-custom">
-              <strong>Em Reais (R$):</strong> {{ convertedRealAmount }}
+              <div><strong>Em Reais (R$):</strong></div>
+              <div>{{ convertedRealAmount }}</div>
             </div>
           </div>
         </div>
-        <div class="text-left">
-          <q-btn @click="goBack" icon="chevron_left" style="border-radius: 50px; width: 50px; height: 50px;"
-            color="primary" class="q-mt-md" size="lg" />
-        </div>
-      </q-card-section>
-    </q-card>
+      </div>
+    </div>
+    <div class="potion-btn">
+      <q-btn class="button-around{" @click="goBack" icon="chevron_left" color="primary" size="lg" />
+    </div>
   </q-page>
 </template>
 
@@ -47,6 +53,7 @@ export default {
   computed: {
     ...mapState(['currencySymbol', 'billAmount', 'exchangeRate', 'realAmount']),
     ...mapGetters(['tipAmount', 'totalAmount', 'amountPerPerson']),
+
     convertedRealAmount() {
       const totalAmountInCurrency = parseFloat(this.totalAmount) || 0;
       return (totalAmountInCurrency * this.realAmount).toFixed(2);
@@ -64,13 +71,9 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  background-color: #f7f7f7;
-  height: 100vh;
-}
-
-.text-custom {
-  font-size: 30px;
-  padding: 30px 0;
+.potion-btn {
+  position: absolute;
+  left: 15px;
+  bottom: 15px;
 }
 </style>
