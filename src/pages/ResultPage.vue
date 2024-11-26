@@ -26,7 +26,7 @@
           </div>
           <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 q-mt-md">
             <div class="text-custom">
-              <strong>R$:</strong> {{ convertedRealAmount }}
+              <strong>Em Reais (R$):</strong> {{ convertedRealAmount }}
             </div>
           </div>
         </div>
@@ -45,12 +45,15 @@ import { mapGetters, mapState } from 'vuex';
 export default {
   name: 'ResultPage',
   computed: {
-    ...mapState(['currencySymbol', 'billAmount', 'exchangeRate']),
+    ...mapState(['currencySymbol', 'billAmount', 'exchangeRate', 'realAmount']),
     ...mapGetters(['tipAmount', 'totalAmount', 'amountPerPerson']),
     convertedRealAmount() {
-      const totalAmountInCurrency = parseFloat(this.totalAmount) || 0; // Pega o total em outra moeda
-      return (totalAmountInCurrency * this.exchangeRate).toFixed(2); // Converte para R$
+      const totalAmountInCurrency = parseFloat(this.totalAmount) || 0;
+      return (totalAmountInCurrency * this.realAmount).toFixed(2);
     },
+  },
+  created() {
+    this.$store.dispatch('fetchConversion');
   },
   methods: {
     goBack() {

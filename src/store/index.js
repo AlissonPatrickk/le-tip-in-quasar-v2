@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { fetchExchangeRate } from '../services/index';
+import { convertCurrency } from '../services/index';
 
 Vue.use(Vuex);
 
@@ -10,8 +10,8 @@ export default new Vuex.Store({
         tipPercentage: 10,
         numberOfPeople: 2,
         currency: 'EUR',
-        exchangeRate: 1,
         currencySymbol: '€',
+        exchangeRate: 1,
         realAmount: 0,
     },
     mutations: {
@@ -28,20 +28,18 @@ export default new Vuex.Store({
             state.currency = currency;
             state.currencySymbol = currency === 'EUR' ? '€' : (currency === 'USD' ? '$' : 'R$');
         },
-        setExchangeRate(state, rate) {
-            state.exchangeRate = rate;
-        },
         setRealAmount(state, amount) {
             state.realAmount = amount;
         },
     },
     actions: {
-        async exchangeRateStore({ commit, state }) {
+        async fetchConversion({ commit, state }) {
             try {
-                const rate = await fetchExchangeRate(state.currency, 'BRL');
-                commit('setExchangeRate', rate);
+                const result = await convertCurrency(state.currency, 'BRL', state.billAmount);
+                commit('setRealAmount', result);
+                commit('setExchangeRate', result.exchangeRate); 
             } catch (error) {
-                console.error('Erro ao buscar taxa de câmbio:', error);
+                console.error('Erro ao converter moeda:', error);
             }
         },
     },
@@ -52,16 +50,18 @@ export default new Vuex.Store({
         totalAmount(state, getters) {
             const billAmount = parseFloat(state.billAmount) || 0;
             const tipAmount = parseFloat(getters.tipAmount) || 0;
-            const exchangeRate = parseFloat(state.exchangeRate) || 1;
-
-            return (billAmount + (tipAmount * exchangeRate)).toFixed(2);
+            return (billAmount + tipAmount).toFixed(2);
         },
         amountPerPerson(state, getters) {
             const totalAmount = parseFloat(getters.totalAmount) || 0;
             return (totalAmount / state.numberOfPeople).toFixed(2);
         },
         convertedRealAmount(state) {
-            return (state.realAmount / state.exchangeRate).toFixed(2);
+            const amount = parseFloat(state.realAmount);
+            if (isNaN(amount) || amount === 0) {
+                return '0.00';
+            }
+            return amount.toFixed(2);
         },
     },
 });

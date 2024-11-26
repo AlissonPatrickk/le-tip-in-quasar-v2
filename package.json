@@ -11,6 +11,7 @@
     "axios": "^1.7.7",
     "core-js": "^3.8.3",
     "quasar": "^1.22.10",
+    "typeface-open-sans": "^1.1.13",
     "vue": "^2.7.16",
     "vue-router": "^3.6.5",
     "vuex": "^3.6.2"
