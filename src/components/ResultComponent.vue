@@ -4,25 +4,25 @@
       <div class="col-12 q-mb-md">
         <div class="text-custom">
           <div><strong>Conta:</strong></div>
-          <div>{{ billAmount }} {{ currencySymbol }}</div>
+          <div>{{ currencySymbol }} {{ billAmount }}</div>
         </div>
       </div>
       <div class="col-12 q-mb-md">
         <div class="text-custom">
           <div><strong>Gorjeta:</strong></div>
-          <div>{{ tipAmount }} {{ currencySymbol }}</div>
+          <div>{{ currencySymbol }} {{ tipAmount }}</div>
         </div>
       </div>
       <div class="col-12 q-mb-md">
         <div class="text-custom">
           <div><strong>Total:</strong></div>
-          <div>{{ totalAmount }} {{ currencySymbol }}</div>
+          <div>{{ currencySymbol }} {{ totalAmount }}</div>
         </div>
       </div>
       <div class="col-12 q-mb-md">
         <div class="text-custom">
           <div><strong>Por Pessoa:</strong></div>
-          <div>{{ amountPerPerson }} {{ currencySymbol }}</div>
+          <div>{{ currencySymbol }} {{ amountPerPerson }}</div>
         </div>
       </div>
       <div class="col-12 q-mt-md">
